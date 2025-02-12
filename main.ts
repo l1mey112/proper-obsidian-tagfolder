@@ -690,7 +690,7 @@ export default class TagFolderPlugin extends Plugin {
 			if (w.every((e) => e)) continue;
 
 			// ignore #task/*
-			allTags = allTags.filter(e => !e.startsWith("#task/"));
+			allTags = allTags.filter(e => !e.startsWith("task/"));
 
 			allTags = allTags.filter(
 				(tag) => !ignoreTags.contains(tag.toLowerCase())
