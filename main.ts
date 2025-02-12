@@ -620,6 +620,10 @@ export default class TagFolderPlugin extends Plugin {
 			} else {
 				allTags = unique(fileCache.links)
 			}
+
+			// ignore #task/*
+			allTags = allTags.filter(e => !e.startsWith("task/"));
+
 			if (this.settings.disableNestedTags && mode == "tag") {
 				allTags = allTags.map((e) => e.split("/")).flat();
 			}
@@ -688,9 +692,6 @@ export default class TagFolderPlugin extends Plugin {
 			});
 
 			if (w.every((e) => e)) continue;
-
-			// ignore #task/*
-			allTags = allTags.filter(e => !e.startsWith("task/"));
 
 			allTags = allTags.filter(
 				(tag) => !ignoreTags.contains(tag.toLowerCase())
