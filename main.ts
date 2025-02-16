@@ -599,7 +599,7 @@ export default class TagFolderPlugin extends Plugin {
 						fileCache.file.path.toLowerCase().startsWith(e)
 				)
 				// ignore _* files
-				|| fileCache.file.path.toLowerCase().startsWith('_')
+				//|| fileCache.file.path.toLowerCase().startsWith('_')
 			) {
 				continue;
 			}

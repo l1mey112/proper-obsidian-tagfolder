@@ -714,10 +714,59 @@
             : tags.length + leftOverItems.length,
     );
 
-    const leftOverItemsDisp = $derived(splitArrayToBatch(leftOverItems));
+    const leftOverItemsDisped = $derived(splitArrayToBatch(leftOverItems));
+
+    const leftOverItemsDisp = $derived(
+        // thisName: unsw/
+        
+        leftOverItemsDisped.map(items => {
+            return items.filter((item) => {
+                return item.tags.includes(thisName.replace(/\/$/, ""));
+            });
+        }),
+    );
+
     const childrenDisp = $derived(splitArrayToBatch(children));
 
-    
+    $effect(() => {
+
+        console.log(leftOverItemsDisped, leftOverItemsDisp, { viewType,
+thisName,
+items,
+tagName,
+tagNameDisp,
+trail,
+isRoot,
+isMainTree,
+depth,
+folderIcon,
+headerTitle,
+showMenu,
+openFile,
+hoverPreview,
+openScrollView,})
+        
+        // filter leftOverItemsDisp to only contain items if the current tag is the highest possible for that tag
+        /* console.log(leftOverItemsDisp, { viewType,
+thisName,
+items,
+tagName,
+tagNameDisp,
+trail,
+isRoot,
+isMainTree,
+depth,
+folderIcon,
+headerTitle,
+showMenu,
+openFile,
+hoverPreview,
+openScrollView,}) */
+
+        /* leftOverItemsDisp = leftOverItemsDisp.filter((items) => {
+            
+        }); */
+    })
 
     // -- Dragging ---
     const draggable = $derived(!_setting.disableDragging);
